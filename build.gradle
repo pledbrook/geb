@@ -110,12 +110,8 @@ project(':core') {
 		testCompile spockDependency
 		testCompile seleniumDependency
 		testCompile jettyDependency
-		testCompile files("${rootDir}/test-utils/build/classes/main") {
-			builtBy ':test-utils:compileGroovy'
-		}
-		testCompile files("${rootDir}/runners/spock/build/classes/main") {
-			builtBy ':runners:spock:compileGroovy'
-		}
+		testCompile project(":test-utils")
+		testCompile project(":runners:spock")
 	}
 }
 
@@ -124,10 +120,7 @@ project(':runners:spock') {
 		compile spockDependency
 		compile seleniumDependency
 		compile project(':core')
-		testCompile jettyDependency
-		testCompile files("${rootDir}/test-utils/build/classes/main") {
-			builtBy ':test-utils:compileGroovy'
-		}
+		testCompile project(":test-utils")
 	}
 }
 
@@ -136,10 +129,7 @@ project(':runners:junit3') {
 		compile seleniumDependency
 		compile project(':core')
 		compile "junit:junit:3.8.2"
-		testCompile jettyDependency
-		testCompile files("${rootDir}/test-utils/build/classes/main") {
-			builtBy ':test-utils:compileGroovy'
-		}
+		testCompile project(":test-utils")
 	}
 }
 
